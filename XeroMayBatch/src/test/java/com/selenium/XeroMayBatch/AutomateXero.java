@@ -17,7 +17,7 @@ public class AutomateXero {
 		// TODO Auto-generated method stub
 		//LoginToXero();
 		//Incorrect_Password();
-		Incorrect_Email();
+		//Incorrect_Email();
 		//Forgot_Password();
 		//SignUP_XDC();
 		//SignUP_XDC_WrongEmail();
@@ -31,7 +31,7 @@ public class AutomateXero {
 		//Add_Organization_PaidVersion();
 		//Add_Organization_Starterplan();
 		//Add_Organization_Standardplan();
-		//Add_Organization_Premiumplan();
+		Add_Organization_Premiumplan();
 		//Add_Organization_Current_Quickbooks();
 		//Look_Subscription_Billing();
 	}
@@ -884,6 +884,27 @@ public static void Add_Organization_TrailVersion() throws InterruptedException {
 		WebElement creditcard2=driver.findElement(By.xpath("//span[contains(text(),'Credit Card')]"));
 		creditcard2.click();
 		Thread.sleep(9000);
+		
+		driver.switchTo().frame("__privateStripeFrame7");
+		Thread.sleep(15000);
+		WebElement cardnum1=driver.findElement(By.xpath("//div[@id='stripe-card-number']"));
+		cardnum1.sendKeys("4465420599077708");
+		Thread.sleep(5000);
+		
+		WebElement securitycode1=driver.findElement(By.xpath("//div[@id='stripe-card-cvc']"));
+		securitycode1.sendKeys("678");
+		Thread.sleep(3000);
+		
+		WebElement expiry1=driver.findElement(By.xpath("//div[@id='stripe-card-expiry']"));
+		expiry1.sendKeys("0522");
+		
+		WebElement cardname1=driver.findElement(By.xpath("//input[@id='stripe-cardholder-name']"));
+		cardname1.sendKeys("Gopala");
+		
+		WebElement continuepayment1=driver.findElement(By.xpath("//button[@id='continueButton']"));
+		continuepayment1.click();
+		Thread.sleep(5000);
+		System.out.println("Should be able to see \"Ready to go\" success message");
 	}
 	
 	public static void Add_Organization_Current_Quickbooks() throws InterruptedException {
