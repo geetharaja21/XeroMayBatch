@@ -29,9 +29,9 @@ public class AutomateXero {
 		//Test_Upload_Profile_Image();
 		//Add_Organization_TrailVersion();
 		//Add_Organization_PaidVersion();
-		//Add_Organization_Starterplan();
+		Add_Organization_Starterplan();
 		//Add_Organization_Standardplan();
-		Add_Organization_Premiumplan();
+		//Add_Organization_Premiumplan();
 		//Add_Organization_Current_Quickbooks();
 		//Look_Subscription_Billing();
 	}
@@ -174,7 +174,7 @@ public class AutomateXero {
 		sendlink.click();
 		System.out.println("A link to reset your password has been sent to:An email");
 	}
-public static void SignUP_XDC() throws InterruptedException {//captcha not working
+	public static void SignUP_XDC() throws InterruptedException {//captcha not working
 		
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Venkat\\drivers\\chromedriver.exe");
 		
@@ -754,14 +754,15 @@ public static void Add_Organization_TrailVersion() throws InterruptedException {
 		Thread.sleep(3000);
 		System.out.println("Billing address should be displayed as entered");
 		
-		WebElement creditcard=driver.findElement(By.xpath("//span[contains(text(),'Credit Card')]"));
-		creditcard.click();
+		WebElement creditcard=driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/section[1]/section[1]/div[1]/div[1]/label[2]/span[1]"));
+		Actions creditcardact=new Actions(driver);
+		creditcardact.moveToElement(creditcard).click().build().perform();
 		Thread.sleep(3000);
 		
-		driver.switchTo().frame("__privateStripeFrame7");
+		//driver.switchTo().frame("__privateStripeFrame7");
 		Thread.sleep(10000);
 		WebElement cardnum=driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/section[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]"));
-		cardnum.sendKeys("4465420599077708");
+		cardnum.sendKeys("4465 4205 9907 7708");
 		Thread.sleep(5000);
 		
 		WebElement securitycode=driver.findElement(By.xpath("//div[@id='stripe-card-cvc']"));
@@ -774,8 +775,8 @@ public static void Add_Organization_TrailVersion() throws InterruptedException {
 		WebElement cardname=driver.findElement(By.xpath("//input[@id='stripe-cardholder-name']"));
 		cardname.sendKeys("Gopala");
 		
-		WebElement continuepayment=driver.findElement(By.xpath("//button[@id='continueButton']"));
-		continuepayment.click();
+		WebElement continuepurchase=driver.findElement(By.xpath("//span[contains(text(),'Confirm Purchase')]"));
+		continuepurchase.click();
 		Thread.sleep(5000);
 		System.out.println("Should be able to see \"Ready to go\" success message");
 	}
@@ -837,8 +838,8 @@ public static void Add_Organization_TrailVersion() throws InterruptedException {
 		WebElement cardname1=driver.findElement(By.xpath("//input[@id='stripe-cardholder-name']"));
 		cardname1.sendKeys("Gopala");
 		
-		WebElement continuepayment1=driver.findElement(By.xpath("//button[@id='continueButton']"));
-		continuepayment1.click();
+		WebElement continuepurchase1=driver.findElement(By.xpath("//span[contains(text(),'Confirm Purchase')]"));
+		continuepurchase1.click();
 		Thread.sleep(5000);
 		System.out.println("Should be able to see \"Ready to go\" success message");
 	}
@@ -901,8 +902,8 @@ public static void Add_Organization_TrailVersion() throws InterruptedException {
 		WebElement cardname1=driver.findElement(By.xpath("//input[@id='stripe-cardholder-name']"));
 		cardname1.sendKeys("Gopala");
 		
-		WebElement continuepayment1=driver.findElement(By.xpath("//button[@id='continueButton']"));
-		continuepayment1.click();
+		WebElement continuepurchase2=driver.findElement(By.xpath("//span[contains(text(),'Confirm Purchase')]"));
+		continuepurchase2.click();
 		Thread.sleep(5000);
 		System.out.println("Should be able to see \"Ready to go\" success message");
 	}
