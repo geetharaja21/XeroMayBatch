@@ -29,9 +29,9 @@ public class AutomateXero {
 		//Test_Upload_Profile_Image();
 		//Add_Organization_TrailVersion();
 		//Add_Organization_PaidVersion();
-		Add_Organization_Starterplan();
+		//Add_Organization_Starterplan();
 		//Add_Organization_Standardplan();
-		//Add_Organization_Premiumplan();
+		Add_Organization_Premiumplan();
 		//Add_Organization_Current_Quickbooks();
 		//Look_Subscription_Billing();
 	}
@@ -683,6 +683,7 @@ public static void Add_Organization_TrailVersion() throws InterruptedException {
 			driver.switchTo().window(handle);
 		}
 		
+		System.out.println("Child window "+ driver.getWindowHandle());
 		WebElement addorg=driver.findElement(By.id("ext-gen1043"));
 		addorg.click();
 		
@@ -748,29 +749,48 @@ public static void Add_Organization_TrailVersion() throws InterruptedException {
 		WebElement zipcode=driver.findElement(By.xpath("//input[@id='contactPostalCode']"));
 		zipcode.sendKeys("95051");;
 		
-		WebElement Continue=driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[1]/button[1]"));
+		WebElement Continue=driver.findElement(By.xpath("//button[@class='xui-button xui-actions--primary xui-button-main']"));
 		Continue.click();
-		Thread.sleep(5000);
-		Thread.sleep(3000);
 		System.out.println("Billing address should be displayed as entered");
-		
-		WebElement creditcard=driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/section[1]/section[1]/div[1]/div[1]/label[2]/span[1]"));
-		Actions creditcardact=new Actions(driver);
-		creditcardact.moveToElement(creditcard).click().build().perform();
-		Thread.sleep(3000);
-		
-		//driver.switchTo().frame("__privateStripeFrame7");
-		Thread.sleep(10000);
-		WebElement cardnum=driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[2]/section[1]/section[2]/div[1]/div[1]/div[1]/div[1]/div[1]"));
-		cardnum.sendKeys("4465 4205 9907 7708");
+		Thread.sleep(15000);
+				
+		WebElement creditcard=driver.findElement(By.xpath("//span[contains(text(),'Credit Card')]"));
+		creditcard.click();
 		Thread.sleep(5000);
 		
-		WebElement securitycode=driver.findElement(By.xpath("//div[@id='stripe-card-cvc']"));
-		securitycode.sendKeys("678");
-		Thread.sleep(3000);
+		WebElement frame1=driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame7']"));
+		frame1.click();
 		
-		WebElement expiry=driver.findElement(By.xpath("//div[@id='stripe-card-expiry']"));
+		driver.switchTo().frame(frame1);
+		Thread.sleep(7000);
+		
+		WebElement cardnum=driver.findElement(By.xpath("//input[@name='cardnumber']"));
+		cardnum.clear();
+		cardnum.sendKeys("4465 4205 9907 7708");
+		driver.switchTo().defaultContent();
+		Thread.sleep(7000);
+		
+		WebElement frame2=driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame8']"));
+		frame2.click();
+		
+		driver.switchTo().frame(frame2);
+		Thread.sleep(4000);
+		
+		WebElement expiry=driver.findElement(By.xpath("//input[@name='exp-date']"));
 		expiry.sendKeys("0522");
+		driver.switchTo().defaultContent();
+		Thread.sleep(5000);
+		
+		WebElement frame3=driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame9']"));
+		frame3.click();
+		
+		driver.switchTo().frame(frame3);
+		Thread.sleep(4000);
+		
+		WebElement securitycode=driver.findElement(By.xpath("//input[@name='cvc']"));
+		securitycode.sendKeys("678");
+		driver.switchTo().defaultContent();
+		Thread.sleep(5000);
 		
 		WebElement cardname=driver.findElement(By.xpath("//input[@id='stripe-cardholder-name']"));
 		cardname.sendKeys("Gopala");
@@ -813,27 +833,48 @@ public static void Add_Organization_TrailVersion() throws InterruptedException {
 		WebElement zipcode1=driver.findElement(By.xpath("//input[@id='contactPostalCode']"));
 		zipcode1.sendKeys("95051");;
 		
-		WebElement Continue1=driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[1]/button[1]"));
+		WebElement Continue1=driver.findElement(By.xpath("//button[@class='xui-button xui-actions--primary xui-button-main']"));
 		Continue1.click();
 		Thread.sleep(5000);
-		Thread.sleep(3000);
 		System.out.println("Billing address should be displayed as entered");
 		
 		WebElement creditcard1=driver.findElement(By.xpath("//span[contains(text(),'Credit Card')]"));
 		creditcard1.click();
 		Thread.sleep(9000);
 		
-		driver.switchTo().frame("__privateStripeFrame7");
-		WebElement cardnum1=driver.findElement(By.xpath("//div[@id='stripe-card-number']"));
-		cardnum1.sendKeys("4465420599077708");
+		WebElement frame1=driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame7']"));
+		frame1.click();
+		
+		driver.switchTo().frame(frame1);
+		Thread.sleep(7000);
+		
+		WebElement cardnum=driver.findElement(By.xpath("//input[@name='cardnumber']"));
+		cardnum.clear();
+		cardnum.sendKeys("4465 4205 9907 7708");
+		driver.switchTo().defaultContent();
+		Thread.sleep(7000);
+		
+		WebElement frame2=driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame8']"));
+		frame2.click();
+		
+		driver.switchTo().frame(frame2);
+		Thread.sleep(4000);
+		
+		WebElement expiry=driver.findElement(By.xpath("//input[@name='exp-date']"));
+		expiry.sendKeys("0522");
+		driver.switchTo().defaultContent();
 		Thread.sleep(5000);
 		
-		WebElement securitycode1=driver.findElement(By.xpath("//div[@id='stripe-card-cvc']"));
-		securitycode1.sendKeys("678");
-		Thread.sleep(3000);
+		WebElement frame3=driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame9']"));
+		frame3.click();
 		
-		WebElement expiry1=driver.findElement(By.xpath("//div[@id='stripe-card-expiry']"));
-		expiry1.sendKeys("0522");
+		driver.switchTo().frame(frame3);
+		Thread.sleep(4000);
+		
+		WebElement securitycode=driver.findElement(By.xpath("//input[@name='cvc']"));
+		securitycode.sendKeys("678");
+		driver.switchTo().defaultContent();
+		Thread.sleep(5000);
 		
 		WebElement cardname1=driver.findElement(By.xpath("//input[@id='stripe-cardholder-name']"));
 		cardname1.sendKeys("Gopala");
@@ -876,28 +917,48 @@ public static void Add_Organization_TrailVersion() throws InterruptedException {
 		WebElement zipcode2=driver.findElement(By.xpath("//input[@id='contactPostalCode']"));
 		zipcode2.sendKeys("95051");;
 		
-		WebElement Continue2=driver.findElement(By.xpath("/html[1]/body[1]/div[2]/div[1]/div[1]/div[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[1]/button[1]"));
+		WebElement Continue2=driver.findElement(By.xpath("//button[@class='xui-button xui-actions--primary xui-button-main']"));
 		Continue2.click();
 		Thread.sleep(5000);
-		Thread.sleep(3000);
 		System.out.println("Billing address should be displayed as entered");
 		
 		WebElement creditcard2=driver.findElement(By.xpath("//span[contains(text(),'Credit Card')]"));
 		creditcard2.click();
 		Thread.sleep(9000);
 		
-		driver.switchTo().frame("__privateStripeFrame7");
-		Thread.sleep(15000);
-		WebElement cardnum1=driver.findElement(By.xpath("//div[@id='stripe-card-number']"));
-		cardnum1.sendKeys("4465420599077708");
+		WebElement frame1=driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame7']"));
+		frame1.click();
+		
+		driver.switchTo().frame(frame1);
+		Thread.sleep(7000);
+		
+		WebElement cardnum=driver.findElement(By.xpath("//input[@name='cardnumber']"));
+		cardnum.clear();
+		cardnum.sendKeys("4465 4205 9907 7708");
+		driver.switchTo().defaultContent();
+		Thread.sleep(7000);
+		
+		WebElement frame2=driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame8']"));
+		frame2.click();
+		
+		driver.switchTo().frame(frame2);
+		Thread.sleep(4000);
+		
+		WebElement expiry=driver.findElement(By.xpath("//input[@name='exp-date']"));
+		expiry.sendKeys("0522");
+		driver.switchTo().defaultContent();
 		Thread.sleep(5000);
 		
-		WebElement securitycode1=driver.findElement(By.xpath("//div[@id='stripe-card-cvc']"));
-		securitycode1.sendKeys("678");
-		Thread.sleep(3000);
+		WebElement frame3=driver.findElement(By.xpath("//iframe[@name='__privateStripeFrame9']"));
+		frame3.click();
 		
-		WebElement expiry1=driver.findElement(By.xpath("//div[@id='stripe-card-expiry']"));
-		expiry1.sendKeys("0522");
+		driver.switchTo().frame(frame3);
+		Thread.sleep(4000);
+		
+		WebElement securitycode=driver.findElement(By.xpath("//input[@name='cvc']"));
+		securitycode.sendKeys("678");
+		driver.switchTo().defaultContent();
+		Thread.sleep(5000);
 		
 		WebElement cardname1=driver.findElement(By.xpath("//input[@id='stripe-cardholder-name']"));
 		cardname1.sendKeys("Gopala");
