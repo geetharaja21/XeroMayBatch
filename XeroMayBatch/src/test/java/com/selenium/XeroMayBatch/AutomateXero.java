@@ -19,7 +19,7 @@ public class AutomateXero {
 		//Incorrect_Password();
 		//Incorrect_Email();
 		//Forgot_Password();
-		//SignUP_XDC();
+		SignUP_XDC();
 		//SignUP_XDC_WrongEmail();
 		//SignUP_XDC_Terms_Policy();
 		//SignUP_XDC_OfferDetails();
@@ -31,7 +31,7 @@ public class AutomateXero {
 		//Add_Organization_PaidVersion();
 		//Add_Organization_Starterplan();
 		//Add_Organization_Standardplan();
-		Add_Organization_Premiumplan();
+		//Add_Organization_Premiumplan();
 		//Add_Organization_Current_Quickbooks();
 		//Look_Subscription_Billing();
 	}
@@ -187,7 +187,7 @@ public class AutomateXero {
 		//Maximize browser
 		driver.manage().window().maximize();
 		System.out.println("Application launched successfully");
-		
+		driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 		//delete all cookies
 		driver.manage().deleteAllCookies();
 		
@@ -197,9 +197,11 @@ public class AutomateXero {
 		
 		WebElement firstname=driver.findElement(By.xpath("//input[@name='FirstName']"));
 		firstname.sendKeys("Raj");
+		Thread.sleep(4000);
 		
 		WebElement lastname=driver.findElement(By.xpath("//input[@name='LastName']"));
 		lastname.sendKeys("Kamal");
+		Thread.sleep(4000);
 		
 		WebElement email=driver.findElement(By.xpath("//input[@name='EmailAddress']"));
 		email.sendKeys("RajKamal@gmail.com");
@@ -207,19 +209,20 @@ public class AutomateXero {
 
 		WebElement phoneNum=driver.findElement(By.xpath("//input[@name='PhoneNumber']"));
 		phoneNum.sendKeys("5103456789");
+		Thread.sleep(4000);
 		
 		WebElement country=driver.findElement(By.xpath("//select[@name='LocationCode']"));
 		Select selcountry=new Select(country);
 		selcountry.selectByValue("CA");
 		Thread.sleep(15000);
 		
-		WebElement reCaptcha=driver.findElement(By.xpath("//span[@class='g-recaptcha-submit']"));
-		reCaptcha.click();
-		Thread.sleep(5000);
+//		WebElement reCaptcha=driver.findElement(By.xpath("//span[@class='g-recaptcha-submit']"));
+//		reCaptcha.click();
+//		Thread.sleep(5000);
 					
 		WebElement terms=driver.findElement(By.xpath("//input[@name='TermsAccepted']"));
 		terms.click();
-		Thread.sleep(40000);
+		Thread.sleep(7000);
 		
 		WebElement getstarted=driver.findElement(By.xpath("//button[@class='btn btn-primary']"));
 		getstarted.click();
@@ -368,6 +371,7 @@ public class AutomateXero {
 		
 		WebElement reports=driver.findElement(By.xpath("//a[contains(text(),'Reports')]"));
 		reports.click();
+		System.out.println("you are now in report drop down page");
 		Thread.sleep(2000);
 		
 		WebElement contacts=driver.findElement(By.xpath("//button[contains(text(),'Contacts')]"));
@@ -381,11 +385,13 @@ public class AutomateXero {
 		
 		WebElement settings=driver.findElement(By.xpath("//a[contains(text(),'Settings')]"));
 		settings.click();
+		System.out.println("you are now in settings drop down page");
 		Thread.sleep(3000);
 		
 		WebElement plus=driver.findElement(By.xpath("//li[1]//button[1]//div[1]"));
 		Actions actplus=new Actions(driver);
 		actplus.moveToElement(plus).click().build().perform();
+		System.out.println("you are now in new drop down page");
 		Thread.sleep(4000);
 		
 		WebElement Tekarch1=driver.findElement(By.xpath("//div[@class='xrh-appbutton--body']"));
@@ -394,13 +400,16 @@ public class AutomateXero {
 		Thread.sleep(3000);
 		WebElement files=driver.findElement(By.xpath("//a[contains(text(),'Files')]"));
 		files.click();
+		System.out.println("you are now in file page of xero");
 		
 		WebElement notification=driver.findElement(By.xpath("//li[3]//button[1]//div[1]"));
 		notification.click();
+		System.out.println("Notification page is displayed");
 		Thread.sleep(2000);
 		
 		WebElement search=driver.findElement(By.xpath("//li[@class='xrh-addon xrh-addon-alwaysvisible']//div[@class='xrh-focusable--child xrh-iconwrapper']"));
 		search.click();
+		System.out.println("search field area should be shown");
 		Thread.sleep(3000);
 		
 		WebElement help=driver.findElement(By.xpath("//li[4]//button[1]//div[1]"));
